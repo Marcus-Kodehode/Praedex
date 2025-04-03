@@ -1,0 +1,176 @@
+/* Header container */
+.header {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid rgba(187, 134, 252, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+  animation: pulseBorder 6s ease-in-out infinite;
+}
+
+/* Logo - Praedex */
+.logo {
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c084fc;
+  text-decoration: none;
+  animation: fadeInTop 0.9s ease both;
+  transition: color 0.3s ease;
+  filter: drop-shadow(0 0 0.2rem #c084fcaa);
+}
+
+.logo:hover {
+  color: #e0b3ff;
+  filter: drop-shadow(0 0 0.5rem #c084fc);
+}
+
+/* Nav emojis og knapp */
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  background: none;
+  border: none;
+  color: #d4bfff;
+  margin-left: 1.2rem;
+  font-size: 1.6rem;
+  padding: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.navItem:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 6px #c084fc;
+}
+
+.navItem.active {
+  border-bottom: 2px solid #d4bfff;
+}
+
+/* Search bar */
+.searchContainer {
+  position: relative; /* Viktig for absolutte barn */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.forslagListe {
+  position: absolute;
+  top: 100%; /* rett under input */
+  left: 0;
+  right: 0;
+  margin-top: 0.3rem;
+  background: #2b233d;
+  box-shadow: 0 0 6px #6e44ff;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.forslagItem {
+  padding: 0.4rem 0.6rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.forslagItem:hover {
+  background-color: #6e44ff;
+}
+
+.searchInput {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  background: #2b233d;
+  color: white;
+  box-shadow: 0 0 4px #6e44ff;
+  transition: box-shadow 0.3s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  box-shadow: 0 0 8px #b794f4;
+}
+
+/* Category select */
+.categorySelect {
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  border: none;
+  background: #2b233d;
+  color: white;
+  box-shadow: 0 0 4px #6e44ff;
+  transition: box-shadow 0.3s ease;
+}
+
+.categorySelect:focus {
+  outline: none;
+  box-shadow: 0 0 8px #b794f4;
+}
+
+.forslagListe {
+  position: absolute;
+  margin-top: 0.2rem;
+  background: #2b233d;
+  box-shadow: 0 0 6px #6e44ff;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  z-index: 10;
+}
+
+.forslagItem {
+  padding: 0.3rem 0.6rem;
+  color: white;
+  cursor: pointer;
+}
+
+.forslagItem:hover {
+  background-color: #6e44ff;
+}
+
+
+/* Animations */
+@keyframes pulseBorder {
+  0% {
+    border-bottom-color: rgba(187, 134, 252, 0.3);
+  }
+  50% {
+    border-bottom-color: rgba(187, 134, 252, 0.7);
+  }
+  100% {
+    border-bottom-color: rgba(187, 134, 252, 0.3);
+  }
+}
+
+@keyframes fadeInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
