@@ -1,17 +1,30 @@
-.wrapper {
-    padding: 2rem;
-  }
-  
-  .title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: #fff;
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 2rem;
-  }
-  
+/* Grid layout for books in Category page */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem; /* Space between book cards */
+  padding: 2rem;
+}
+
+/* Style the Show More button */
+.showMoreButton {
+  margin-top: 2rem; /* Space from content */
+  background: #fff;
+  color: #4b0082;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 200px;
+  display: block; /* Make button take the full width */
+  margin-left: auto;
+  margin-right: auto; /* Center horizontally */
+  margin-bottom: 2rem; /* Add space between button and bottom */
+}
+
+.showMoreButton:hover {
+  background-color: #e0d8f5;
+  transform: scale(1.04);
+}
