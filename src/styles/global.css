@@ -1,29 +1,25 @@
 body {
-    margin: 0;
-    font-family: 'EB Garamond', serif;
-    background: linear-gradient(-45deg, #1d1f33, #2e2f49, #4c3b60, #2a2a45);
-    background-size: 400% 400%;
-    animation: bakgrunnAnimasjon 25s ease infinite;
-    color: #ffffff;
-    min-height: 100vh;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Merriweather', serif;
-  }
+  margin: 0;
+  font-family: 'EB Garamond', serif;
+  background: linear-gradient(-45deg, #1d1f33, #2e2f49, #4c3b60, #2a2a45);
+  background-size: 400% 400%;
+  animation: bakgrunnAnimasjon 25s ease infinite;
+  color: #ffffff;
+  min-height: 100vh;
+}
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+}
 
-/* Du kan også overstyre andre ting som header-farger osv ved behov */
-
-  
-  @keyframes bakgrunnAnimasjon {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+@keyframes bakgrunnAnimasjon {
+  0% {
+    background-position: 0% 50%;
   }
-  
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

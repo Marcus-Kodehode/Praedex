@@ -1,9 +1,6 @@
+/* Inside the book card */
 .card {
-  background: linear-gradient(
-    145deg,
-    rgba(56, 44, 84, 0.9),
-    rgba(36, 28, 58, 0.9)
-  );
+  background: linear-gradient(145deg, rgba(56, 44, 84, 0.9), rgba(36, 28, 58, 0.9));
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -14,6 +11,7 @@
   align-items: center;
 }
 
+/* Add styles on hover */
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(187, 134, 252, 0.3);
@@ -53,33 +51,34 @@ p {
   font-size: 0.9rem;
   font-family: 'EB Garamond', serif;
   color: #e0d8f5;
+  text-align: center;
 }
 
-/* Style buttons */
-button {
-  margin-top: 0.5rem;
-  background: #fff;
-  color: #4b0082;
+/* Flexbox container for buttons inside .card */
+.card .button-container {
+  display: flex;
+  justify-content: center; /* Centers buttons horizontally */
+  width: 100%; /* Ensures the full width */
+}
+
+/* Style for favorite and download buttons */
+.favoriteButton {
+  background: #ff6347; /* Red for 'remove from favorites' */
+  color: white;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
   border: none;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease;
-  display: inline-block; /* Allow center alignment */
+  display: inline-block;
 }
 
-button:hover {
+.favoriteButton:hover {
   background-color: #e0d8f5;
   transform: scale(1.04);
 }
 
-/* Add this if you want to center buttons inside the card */
-.card .buttonContainer {
-  display: flex;
-  justify-content: center; /* Centers buttons horizontally */
-  width: 100%;
-}
 .downloadButton {
   background-color: #6e44ff;
   color: white;
@@ -94,6 +93,6 @@ button:hover {
 }
 
 .downloadButton:hover {
-  background-color: #e0d8f5;
+  background-color: #b794f4;
   transform: scale(1.04);
 }
