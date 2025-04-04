@@ -95,14 +95,26 @@
   }
   
   button {
-    margin-top: 0.5rem;
+    margin-top: 2rem; /* Øk avstanden fra innholdet */
     background: #fff;
     color: #4b0082;
-    padding: 0.4rem 0.8rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 6px;
     border: none;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
+    display: block; /* Gjør knappen til en blokk slik at den tar opp hele linjen */
+    width: 200px; /* Sett en fast bredde for knappen */
+    margin-left: auto;
+    margin-right: auto; /* Sentere knappen horisontalt */
+    margin-bottom: 2rem; /* Legg til ekstra plass mellom knappen og bunnen av siden */
+    margin-top: 4rem; /* Øk avstand fra toppen */
   }
+  
+  button:hover {
+    background-color: #e0d8f5;
+    transform: scale(1.04);
+  }
+  
   

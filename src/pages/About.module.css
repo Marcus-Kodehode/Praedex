@@ -1,0 +1,77 @@
+/* Container for the whole about page */
+.container {
+    padding: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #1c1532; /* Slightly darker background for the About page */
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #6e44ff; /* Match logo color */
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-transform: uppercase; /* Makes the title stand out */
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #e0d8f5;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #6e44ff; /* Border to make section titles pop */
+    padding-bottom: 0.5rem;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    font-size: 1rem;
+    color: #e0d8f5;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Styling for the individual sections */
+.section {
+    background: #2b233d; /* Darker background for sections */
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    border-left: 5px solid #6e44ff; /* Add a side border for flair */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.section p {
+    font-size: 1rem;
+    color: #e0d8f5;
+    line-height: 1.6;
+}
+
+
+/* Styling for credits section */
+.section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.section ul li {
+    font-size: 1rem;
+    color: #e0d8f5;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.section ul li a {
+    color: #6e44ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.section ul li a:hover {
+    color: #b794f4;
+}

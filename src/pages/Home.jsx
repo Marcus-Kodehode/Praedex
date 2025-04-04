@@ -76,7 +76,7 @@ export default function Home() {
 
       {/* Vis mer knapp */}
       {bøker.length < totalBooks && !laster && (
-        <button onClick={loadMoreBooks}>Vis mer</button> // Laster flere bøker når knappen trykkes
+        <button onClick={loadMoreBooks}>Show more</button> // Laster flere bøker når knappen trykkes
       )}
     </div>
   )

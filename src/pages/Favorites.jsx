@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import BookCard from '../components/BookCard'
+import styles from './Favorites.module.css' // Import CSS for styling
 
 export default function Favorites() {
   const [favoritter, setFavoritter] = useState([])
@@ -19,11 +20,19 @@ export default function Favorites() {
 
   return (
     <div>
-      <h2>Mine Favorites</h2>
-      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))' }}>
-        {favoritter.map((bok) => (
-          <BookCard key={bok.id} bok={bok} onFjern={fjernFavoritt} />
-        ))}
+      <h2>My Favorites</h2>
+      <div className={styles.grid}>
+        {favoritter.length > 0 ? (
+          favoritter.map((bok) => (
+            <BookCard
+              key={bok.id}
+              bok={bok}
+              onFjern={() => fjernFavoritt(bok.id)}
+            />
+          ))
+        ) : (
+          <p>No favorites yet.</p>
+        )}
       </div>
     </div>
   )

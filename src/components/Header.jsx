@@ -37,9 +37,9 @@ export default function Header({ bøker = [] }) {
   }
 
   function velgForslag(tittel) {
-    setSøkeord('')                            // ← Blank ut input
-    setForslag([])                            // ← Skjul forslag
-    navigate(`/?sok=${encodeURIComponent(tittel)}`)  // ← Naviger
+    setSøkeord('')                            // Blank ut input
+    setForslag([])                            // Skjul forslag
+    navigate(`/?sok=${encodeURIComponent(tittel)}`)  // Naviger
   }
 
   return (
@@ -50,6 +50,7 @@ export default function Header({ bøker = [] }) {
         <NavLink to="/favoritter" className={styles.navItem}>❤️</NavLink>
         <NavLink to="/contact" className={styles.navItem}>📩</NavLink>
         <NavLink to="/about" className={styles.navItem}>ℹ️</NavLink>
+        {/* New Link to Utforsk page */}
       </nav>
 
       <form onSubmit={handleSubmit} className={styles.searchContainer}>

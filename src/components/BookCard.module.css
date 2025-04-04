@@ -80,3 +80,20 @@ button:hover {
   justify-content: center; /* Centers buttons horizontally */
   width: 100%;
 }
+.downloadButton {
+  background-color: #6e44ff;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.downloadButton:hover {
+  background-color: #e0d8f5;
+  transform: scale(1.04);
+}

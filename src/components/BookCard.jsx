@@ -1,10 +1,16 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import styles from './BookCard.module.css'
+import { useState, useEffect } from 'react'; // Legg til denne linjen
+import { Link } from 'react-router-dom';
+import styles from './BookCard.module.css';
+
 
 export default function BookCard({ bok, onFjern }) {
-  const forfatter = bok?.authors?.[0]?.name || 'Unknown author'
+  const forfatter = bok?.authors?.[0]?.name || 'Ukjent forfatter'
   const bilde = bok?.formats?.['image/jpeg'] || null
+
+  // Hent nedlastingslenken for EPUB, PDF og Kindle
+  const downloadLink = bok?.formats?.['application/epub+zip'] || 
+                       bok?.formats?.['application/pdf'] || 
+                       bok?.formats?.['application/x-mobipocket-ebook'];
 
   const [erFavoritt, setErFavoritt] = useState(false)
 
@@ -50,16 +56,20 @@ export default function BookCard({ bok, onFjern }) {
           <Link to={`/bok/${bok.id}`}>{bok.title}</Link>
         </h3>
         <p>{forfatter}</p>
-        <p>Downloads: {bok.download_count}</p>
+        <p>Nedlastinger: {bok.download_count}</p>
 
-        {/* Button container for centering buttons */}
-        <div className={styles.buttonContainer}>
-          {erFavoritt ? (
-            <button onClick={fjernFraFavoritter}>📖 Remove from favorites</button>
-          ) : (
-            <button onClick={leggTilIFavoritter}>❤️ Add to favorites</button>
-          )}
-        </div>
+        {erFavoritt ? (
+          <button onClick={fjernFraFavoritter}>📖 Fjern fra favoritt</button>
+        ) : (
+          <button onClick={leggTilIFavoritter}>❤️ Legg til favoritt</button>
+        )}
+
+        {/* Vis nedlastingsknapp hvis downloadLink finnes */}
+        {downloadLink && (
+          <a href={downloadLink} target="_blank" rel="noopener noreferrer">
+            <button className={styles.downloadButton}>Last ned bok</button>
+          </a>
+        )}
       </div>
     </div>
   )
