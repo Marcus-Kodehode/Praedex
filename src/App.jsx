@@ -9,6 +9,7 @@ import Category from './pages/Category'
 import BookDetails from './pages/BookDetails'
 import Contact from './pages/Contact'
 import About from './pages/About'
+import Explore from './pages/Explore' // Importer Utforsker-siden
 
 function App() {
   const [bøker, setBøker] = useState([])
@@ -38,6 +39,7 @@ function App() {
           <Route path="/bok/:id" element={<BookDetails />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/utforsk" element={<Explore />} /> {/* Utforsker-siden lagt til her */}
         </Routes>
       </main>
     </BrowserRouter>
