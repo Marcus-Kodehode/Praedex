@@ -1,45 +1,48 @@
-import { NavLink, useNavigate } from 'react-router-dom'
-import styles from './Header.module.css'
-import { useState, useEffect } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom';
+import styles from './Header.module.css';
+import { useState, useEffect } from 'react';
 
 export default function Header({ bøker = [] }) {
-  const [søkeord, setSøkeord] = useState('')
-  const [forslag, setForslag] = useState([])
-  const navigate = useNavigate()
+  const [søkeord, setSøkeord] = useState('');
+  const [forslag, setForslag] = useState([]);
+  const navigate = useNavigate();
 
   const kategorier = [
     'Fiction', 'Mystery', 'Thriller', 'Romance', 'Fantasy',
     'Morality', 'Society', 'Power', 'Justice',
     'Adventure', 'Tragedy', 'War', 'Philosophy'
-  ]
+  ];
 
   useEffect(() => {
     if (!søkeord.trim()) {
-      setForslag([])
-      return
+      setForslag([]);
+      return;
     }
 
     const filtrert = bøker
       .filter((bok) =>
-        bok?.title?.toLowerCase().includes(søkeord.toLowerCase())
+        bok?.title?.toLowerCase().includes(søkeord.toLowerCase()) ||
+        bok?.authors?.some((forf) =>
+          forf.name.toLowerCase().includes(søkeord.toLowerCase())
+        )
       )
-      .slice(0, 5)
+      .slice(0, 5);
 
-    setForslag(filtrert)
-  }, [søkeord, bøker])
+    setForslag(filtrert);
+  }, [søkeord, bøker]);
 
   function handleSubmit(e) {
-    e.preventDefault()
-    if (!søkeord.trim()) return
-    navigate(`/?sok=${encodeURIComponent(søkeord)}`)
-    setSøkeord('')
-    setForslag([])
+    e.preventDefault();
+    if (!søkeord.trim()) return;
+    navigate(`/?sok=${encodeURIComponent(søkeord)}`);
+    setSøkeord('');
+    setForslag([]);
   }
 
   function velgForslag(tittel) {
-    setSøkeord('')                            // Blank ut input
-    setForslag([])                            // Skjul forslag
-    navigate(`/?sok=${encodeURIComponent(tittel)}`)  // Naviger
+    setSøkeord('');
+    setForslag([]);
+    navigate(`/?sok=${encodeURIComponent(tittel)}`);
   }
 
   return (
@@ -50,7 +53,6 @@ export default function Header({ bøker = [] }) {
         <NavLink to="/favoritter" className={styles.navItem}>❤️</NavLink>
         <NavLink to="/contact" className={styles.navItem}>📩</NavLink>
         <NavLink to="/about" className={styles.navItem}>ℹ️</NavLink>
-        {/* New Link to Utforsk page */}
       </nav>
 
       <form onSubmit={handleSubmit} className={styles.searchContainer}>
@@ -78,8 +80,8 @@ export default function Header({ bøker = [] }) {
 
       <select
         onChange={(e) => {
-          const valgt = e.target.value
-          if (valgt) navigate(`/kategori/${valgt}`)
+          const valgt = e.target.value;
+          if (valgt) navigate(`/kategori/${valgt}`);
         }}
         className={styles.categorySelect}
       >
@@ -91,5 +93,5 @@ export default function Header({ bøker = [] }) {
         ))}
       </select>
     </header>
-  )
+  );
 }

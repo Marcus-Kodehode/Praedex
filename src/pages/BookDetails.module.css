@@ -1,0 +1,173 @@
+.bookDetails {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #ffffff;
+  }
+  
+  .title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center; /* Sentrumjustering */
+  }
+  
+  .bookImage {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+  
+  .bookInfo {
+    margin-top: 20px;
+  }
+  
+  
+  .bookInfo p {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .description {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #2d2a49;
+    border-radius: 10px;
+    width: 90%; /* Litt mindre bredde for å gjøre beskrivelsen mer komprimert */
+    color: #d3d3d3;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  .description h3 {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .description p {
+    font-size: 16px;
+    color: #d3d3d3;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  
+  .bookInfo span {
+    font-weight: bold;
+  }
+  
+  .bookInfo a {
+    text-decoration: none;
+  }
+  
+  .bookInfo button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bookInfo button:hover {
+    background-color: #2563eb;
+  }
+  .downloadSection {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .downloadButton {
+    background-color: #3b82f6;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .downloadButton:hover {
+    background-color: #2563eb;
+  }
+  
+  .bookDetails {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #ffffff;
+  }
+  
+  .bookImage {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+  
+  .bookInfo {
+    margin-top: 20px;
+  }
+  
+  .infoLabel {
+    color: #ac5fe3; /* Matching color for Pradex title */
+  }
+  
+  .description {
+    margin-top: 30px;
+    font-size: 1.1rem;
+  }
+  
+  .buttons {
+    margin-top: 40px;
+  }
+  
+  .readButton, .downloadButton, .favoriteButton {
+    background-color: #ac5fe3; /* Default color for buttons */
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px; /* Slightly larger buttons */
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px; /* Added margin to separate the buttons */
+    border-radius: 5px;
+    width: auto;
+    display: inline-block;
+  }
+  
+  .readButton:hover {
+    background-color: #4d91ff; /* Lighter shade for "Read" button */
+  }
+  
+  .downloadButton:hover {
+    background-color: #ff4d4d; /* Lighter red for "Download" button */
+  }
+  
+  .favoriteButton:hover {
+    background-color: #4dff4d; /* Lighter green for "Add to Favorites" */
+  }
+  
+  .readButton {
+    background-color: #4d91ff; /* Blue for "Read" button */
+  }
+  
+  .downloadButton {
+    background-color: #ff4d4d; /* Red for "Download" button */
+  }
+  
+  .favoriteButton {
+    background-color: #4dff4d; /* Green for "Add to Favorites" button */
+  }
+  
+  /* Make the buttons look good on mobile screens as well */
+  @media (max-width: 768px) {
+    .readButton, .downloadButton, .favoriteButton {
+      width: 90%; /* Ensure buttons look good on smaller screens */
+      font-size: 14px;
+    }
+  }

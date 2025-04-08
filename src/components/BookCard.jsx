@@ -1,51 +1,51 @@
-import { useState, useEffect } from 'react'; // Legg til denne linjen
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react'; 
+import { Link } from 'react-router-dom'; 
 import styles from './BookCard.module.css';
 
-
 export default function BookCard({ bok, onFjern }) {
-  const forfatter = bok?.authors?.[0]?.name || 'Ukjent forfatter'
-  const bilde = bok?.formats?.['image/jpeg'] || null
+  // Sjekk om forfatter er definert, og fall tilbake på "Ukjent forfatter" hvis ikke
+  const forfatter = bok?.authors?.[0]?.name || 'Ukjent forfatter'; 
+  const bilde = bok?.formats?.['image/jpeg'] || null; 
 
   // Hent nedlastingslenken for EPUB, PDF og Kindle
   const downloadLink = bok?.formats?.['application/epub+zip'] || 
                        bok?.formats?.['application/pdf'] || 
                        bok?.formats?.['application/x-mobipocket-ebook'];
 
-  const [erFavoritt, setErFavoritt] = useState(false)
+  const [erFavoritt, setErFavoritt] = useState(false);
 
   useEffect(() => {
-    if (!bok || !bok.id) return
+    if (!bok || !bok.id) return;
 
-    const lagrede = JSON.parse(localStorage.getItem('favorites')) || []
-    setErFavoritt(lagrede.some((b) => b?.id === bok.id))
-  }, [bok])
+    const lagrede = JSON.parse(localStorage.getItem('favorites')) || [];
+    setErFavoritt(lagrede.some((b) => b?.id === bok.id));
+  }, [bok]);
 
   function leggTilIFavoritter() {
-    if (!bok) return
-    const lagrede = JSON.parse(localStorage.getItem('favorites')) || []
-    const finnesAllerede = lagrede.some((b) => b?.id === bok.id)
-    if (finnesAllerede) return
+    if (!bok) return;
+    const lagrede = JSON.parse(localStorage.getItem('favorites')) || [];
+    const finnesAllerede = lagrede.some((b) => b?.id === bok.id);
+    if (finnesAllerede) return;
 
-    const oppdatert = [...lagrede, bok]
-    localStorage.setItem('favorites', JSON.stringify(oppdatert))
-    setErFavoritt(true)
+    const oppdatert = [...lagrede, bok];
+    localStorage.setItem('favorites', JSON.stringify(oppdatert));
+    setErFavoritt(true);
   }
 
   function fjernFraFavoritter() {
-    const lagrede = JSON.parse(localStorage.getItem('favorites')) || []
-    const oppdatert = lagrede.filter((b) => b?.id !== bok.id)
-    localStorage.setItem('favorites', JSON.stringify(oppdatert))
-    setErFavoritt(false)
+    const lagrede = JSON.parse(localStorage.getItem('favorites')) || [];
+    const oppdatert = lagrede.filter((b) => b?.id !== bok.id);
+    localStorage.setItem('favorites', JSON.stringify(oppdatert));
+    setErFavoritt(false);
 
     if (onFjern) {
-      onFjern(bok.id)
+      onFjern(bok.id);
     }
   }
 
   // Hvis bok er ugyldig, ikke render noe
   if (!bok || !bok.id) {
-    return null
+    return null;
   }
 
   return (
@@ -72,5 +72,5 @@ export default function BookCard({ bok, onFjern }) {
         )}
       </div>
     </div>
-  )
+  );
 }

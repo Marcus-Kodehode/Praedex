@@ -1,55 +1,104 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import styles from './BookDetails.module.css';
 
 export default function BookDetails() {
-  const { id } = useParams()
-  const [bok, setBok] = useState(null)
-  const [laster, setLaster] = useState(false)
-  const [feil, setFeil] = useState(null)
+  const { id } = useParams(); // Få tak i bokens ID fra URL-en
+  const [bok, setBok] = useState(null); // State for å lagre bokdataene
+  const [erFavoritt, setErFavoritt] = useState(false);
 
   useEffect(() => {
-    if (!id) return
-
-    setLaster(true)
-    setFeil(null)
-
+    // Hente bokdetaljer fra API basert på id
     fetch(`https://gutendex.com/books/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        setBok(data)
-        setLaster(false)
+        console.log('Bokdata hentet:', data);  // Legger til console log for å sjekke hva som skjer
+        setBok(data);  // Oppdaterer state med bokdataene
+        // Sjekk om boken er favoritt
+        const lagrede = JSON.parse(localStorage.getItem('favorites')) || [];
+        setErFavoritt(lagrede.some((b) => b?.id === data.id));
       })
-      .catch(() => {
-        setFeil('Failed to fetch book details.')
-        setLaster(false)
-      })
-  }, [id])
+      .catch((error) => {
+        console.error('Error fetching book details:', error); // Logge feil om fetchen feiler
+      });
+  }, [id]); // Kjør funksjonen når ID-en endres (f.eks. ved navigering)
 
-  if (laster) return <p>Loading book...</p>
-  if (feil) return <p>{feil}</p>
-  if (!bok) return <p>No book found.</p>
+  if (!bok) {
+    return <p>Loading book details...</p>; // Vist mens bokdataene lastes
+  }
 
-  const forfatter = bok.authors?.[0]?.name || 'Unknown author'
-  const bilde = bok.formats['image/jpeg']
-  const språk = bok.languages?.[0] || 'Unknown'
-  const kategori = bok.subjects?.[0] || 'Unknown category'
+  // Hent informasjonen fra bokdataene
+  const authors = bok.authors && Array.isArray(bok.authors) ? bok.authors.map((author) => author.name).join(', ') : 'No author information available';
+  const description = bok.summaries || 'No description available.';
+  const category = bok.subjects?.join(', ') || 'No category available';
+  const language = bok.language || 'No language information available';
+  const downloads = bok.download_count || 'No download count available';
+  const imageUrl = bok.formats["image/jpeg"] || 'https://via.placeholder.com/150';  // Sett et placeholder-bilde om det mangler
+
+  // Hente nedlastingslenker for EPUB, PDF og Kindle
+  const epubLink = bok.formats?.['application/epub+zip'];
+  const pdfLink = bok.formats?.['application/pdf'];
+  const mobiLink = bok.formats?.['application/x-mobipocket-ebook'];
+
+  // Sett opp nedlastingslenken (prioriter PDF først, deretter EPUB og Mobi)
+  const downloadLink = pdfLink || epubLink || mobiLink;
+  
+  // Håndtere favoritter
+  function leggTilIFavoritter() {
+    if (!bok) return;
+    const lagrede = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (!lagrede.some((b) => b?.id === bok.id)) {
+      const oppdatert = [...lagrede, bok];
+      localStorage.setItem('favorites', JSON.stringify(oppdatert));
+      setErFavoritt(true);
+    }
+  }
+
+  function fjernFraFavoritter() {
+    const lagrede = JSON.parse(localStorage.getItem('favorites')) || [];
+    const oppdatert = lagrede.filter((b) => b?.id !== bok.id);
+    localStorage.setItem('favorites', JSON.stringify(oppdatert));
+    setErFavoritt(false);
+  }
 
   return (
-    <div>
-      <h2>{bok.title}</h2>
-      {bilde && <img src={bilde} alt={bok.title} />}
-      <p><strong>Author:</strong> {forfatter}</p>
-      <p><strong>Category:</strong> {kategori}</p>
-      <p><strong>Language:</strong> {språk}</p>
-      <p><strong>Downloads:</strong> {bok.download_count}</p>
+    <div className={styles.bookDetails}>
+      <h1 className={styles.title}>{bok.title}</h1>
+      <img src={imageUrl} alt={bok.title} className={styles.bookImage} />
+      
+      <div className={styles.bookInfo}>
+        <p><strong className={styles.infoLabel}>Author(s):</strong> {authors}</p>
+        <p><strong className={styles.infoLabel}>Category:</strong> {category}</p>
+        <p><strong className={styles.infoLabel}>Language:</strong> {language}</p>
+        <p><strong className={styles.infoLabel}>Downloads:</strong> {downloads}</p>
+      </div>
 
-      {bok.formats['text/html'] && (
-        <p>
-          <a href={bok.formats['text/html']} target="_blank" rel="noreferrer">
-            📖 Read the book online
+      <div className={styles.description}>
+        <h3>Description:</h3>
+        <p>{description}</p>
+      </div>
+
+      <div className={styles.buttons}>
+        {/* Button for reading or downloading */}
+        {epubLink && (
+          <a href={`https://www.gutenberg.org/ebooks/${bok.id}`} target="_blank" rel="noopener noreferrer">
+            <button className={styles.readButton}>Read the Book Online</button>
           </a>
-        </p>
-      )}
+        )}
+        
+        {downloadLink && (
+          <a href={downloadLink} target="_blank" rel="noopener noreferrer">
+            <button className={styles.downloadButton}>Download the Book</button>
+          </a>
+        )}
+
+        {/* Favorite button */}
+        {erFavoritt ? (
+          <button onClick={fjernFraFavoritter} className={styles.favoriteButton}>Remove from Favorites</button>
+        ) : (
+          <button onClick={leggTilIFavoritter} className={styles.favoriteButton}>Add to Favorites</button>
+        )}
+      </div>
     </div>
-  )
+  );
 }
