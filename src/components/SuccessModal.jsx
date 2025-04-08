@@ -1,19 +1,17 @@
 import React from 'react';
-import styles from './SuccessModal.module.css'; // Import CSS module
+import styles from './SuccessModal.module.css'; // OBS: dette må være riktig path og navn
 
-const SuccessModal = ({ onClose }) => {
+export default function SuccessModal({ onClose }) {
   return (
-    <div className={styles.modal}>
-      <div className={styles['modal-content']}>
-        <span className={styles.close} onClick={onClose}>&times;</span>
-        <h3>Oops! Did you really think this would send a message?</h3>
-        <p>Just kidding. Your message has been sent to the *imaginary* library. 🦄</p>
+    <div className={styles.modalBackdrop}>
+      <div className={styles.modalContent}>
+        <h2>Oops! Did you really think this would send a message?</h2>
+        <p>Just kidding. Your message has been sent to the <em>imaginary</em> library. 🦄</p>
         <p>Thank you for your message! (Not really, but we appreciate your effort!)</p>
-        {/* Close Button */}
-        <button className={styles.closeButton} onClick={onClose}>Close</button>
+        <button onClick={onClose} className={styles.closeButton}>
+          Close
+        </button>
       </div>
     </div>
   );
-};
-
-export default SuccessModal;
+}

@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import SuccessModal from '../components/SuccessModal'; // Corrected path
-import styles from './Contact.module.css'; // Assuming we have existing CSS
+import SuccessModal from '../components/SuccessModal';
+import JoakimModal from '../components/JoakimModal';
+import styles from './Contact.module.css';
 
 const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [modalOpen, setModalOpen] = useState(false);
+  const [showStandardModal, setShowStandardModal] = useState(false);
+  const [showJoakimModal, setShowJoakimModal] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate sending an email (open modal)
-    setModalOpen(true);
-    // Reset the form fields
+
+    const isJoakim = name.trim().toLowerCase() === 'joakim';
+    setShowJoakimModal(isJoakim);
+    setShowStandardModal(!isJoakim);
+
     setName('');
     setEmail('');
     setMessage('');
@@ -21,6 +25,7 @@ const Contact = () => {
   return (
     <div className={styles.contactContainer}>
       <h2>Contact Us</h2>
+
       <form onSubmit={handleSubmit} className={styles.contactForm}>
         <input
           type="text"
@@ -50,8 +55,9 @@ const Contact = () => {
         </button>
       </form>
 
-      {/* Modal */}
-      {modalOpen && <SuccessModal onClose={() => setModalOpen(false)} />}
+      {/* Modal visning */}
+      {showStandardModal && <SuccessModal onClose={() => setShowStandardModal(false)} />}
+      {showJoakimModal && <JoakimModal onClose={() => setShowJoakimModal(false)} />}
     </div>
   );
 };

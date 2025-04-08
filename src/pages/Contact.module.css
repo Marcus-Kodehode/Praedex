@@ -82,3 +82,53 @@
   background-color: #e0d8f5;
   transform: scale(1.05);
 }
+.joakimEffect {
+  background: radial-gradient(circle, #00ffff22, #000000);
+  animation: fadeInBg 3s ease-in-out forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes fadeInBg {
+  0% {
+    background-color: #111;
+  }
+  100% {
+    background-color: #001f1f;
+  }
+}
+
+.joakimOverlay {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  animation: floatIn 1.5s ease-out;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.joakimText {
+  color: #00ffff;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px #00ffff;
+}
+
+.joakimSubtext {
+  color: #ccc;
+  font-size: 1.1rem;
+  font-style: italic;
+}
