@@ -2,9 +2,9 @@
   <img src="public/images/logo.png" alt="Gutenbergdex Logo" width="200"/>
 </p>
 
-# 📚 Gutenbergdex – En visuell utforskning av Project Gutenberg
+# 📚 Pradex – En visuell utforskning av Project Gutenberg
 
-**Gutenbergdex** er et frontend-prosjekt som presenterer bøker fra [Project Gutenberg](https://www.gutenberg.org/) på en visuell, katalog-lignende måte.  
+**Pradex** er et frontend-prosjekt som presenterer bøker fra [Project Gutenberg](https://www.gutenberg.org/) på en visuell, katalog-lignende måte.  
 Inspirert av ideen om et "bokkartotek" kombinerer appen klassisk litteratur med moderne webteknologi.
 
 ---
